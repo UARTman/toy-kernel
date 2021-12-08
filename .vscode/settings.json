@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "tty.h": "c",
+        "stdint.h": "c",
+        "stdint-gcc.h": "c",
+        "stdbool.h": "c",
+        "printf.h": "c",
+        "gdt.h": "c"
+    },
+    "mesonbuild.configureOnOpen": true
+}
