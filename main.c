@@ -1,10 +1,11 @@
-#include "drivers/tty.h"
+// #include "drivers/tty.h"
 #include "arch/i686/a20.h"
 #include "third_party/printf/printf.h"
 #include "arch/i686/gdt.h"
 #include "arch/i686/idt.h"
 #include "arch/i686/pic.h"
 #include "arch/i686/helpers.h"
+#include "drivers/pit.h"
 #include "stdint.h"
 
 #if defined(__linux__)
@@ -32,12 +33,12 @@ __attribute__((unused)) void kernel_main()
     // uint8_t bytes [8];
 
     idt_init();
+
+    pit_init();
     PIC_remap(32, 40);
     // int div = inw(0x40);
     // printf("Divider is %i\n", div);
-    outb(0x43, 0x36);
-    outb(0x40, 255);
-    outb(0x40, 255);
+    
     // outw(0x40, 65535);
     // div = inw(0x40)/;
     // printf("Divider is %i\n", div);

@@ -1,7 +1,6 @@
 #include "idt.h"
 #include "third_party/printf/printf.h"
 #include "pic.h"
-#include "drivers/tty.h"
 
 idt_descriptor_t idt_descriptor_encode(idt_descriptor_info_t info)
 {
@@ -141,23 +140,9 @@ void _panic() {
     }
 }
 
-int seconds_elapsed = 0;
-int tick_counter = 0;
 
-void irq0_handler() {
-    tick_counter += 1;
-    if (tick_counter > 18) {
-        tick_counter = 0;
-        seconds_elapsed += 1;
-        int c, r;
-        terminal_getpos(&c, &r);
-        terminal_setpos(0, 0);
-        printf("Total seconds passed: %i\n", seconds_elapsed);
-        terminal_setpos(c, r);
-    }
-}
 
-void (*irq_handlers[16])(void) = {irq0_handler};
+void (*irq_handlers[16])(void) = {};
 
 void __attribute__((__cdecl)) isr_handler(registers_t regs)
 {
@@ -174,4 +159,16 @@ void __attribute__((__cdecl)) isr_handler(registers_t regs)
 
         PIC_sendEOI(pic_irq);
     }  
+}
+
+void irq_sethandler(int irq, void (*handler)(void)) {
+    if (irq >= 0 && irq < 16) {
+        irq_handlers[irq] = handler;
+    }
+}
+
+void irq_unsethandler(int irq) {
+    if (irq >= 0 && irq < 16) {
+        irq_handlers[irq] = 0;
+    }
 }

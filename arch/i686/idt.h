@@ -50,6 +50,9 @@ idt_descriptor_info_t idt_descriptor_decode(idt_descriptor_t descript);
 
 void idt_init();
 
+void irq_sethandler(int irq, void (*handler)(void));
+void irq_unsethandler(int irq);
+
 extern void isr0 ();
 extern void isr1 ();
 extern void isr2 ();
