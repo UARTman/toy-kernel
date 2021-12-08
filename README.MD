@@ -3,9 +3,9 @@
 ## Roadmap
 - [x] Boots
 - [x] VGA Text mode
-- [ ] GDT
+- [x] GDT
   - [x] Detect existing GDT
-  - [ ] Set our own GDT
+  - [x] Set our own GDT
 - [x] Interrupts
   - [x] Set up the IDT
   - [x] Set up the universal interrupt handler
