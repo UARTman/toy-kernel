@@ -77,26 +77,6 @@ void idt_init()
     idtr.limit = 256 * sizeof(idt_descriptor_t) - 1;
     idtr.base = (uint32_t)&idt_table;
 
-    // idt_descriptor_info_t info = {
-    //     .offset = (uint32_t)&isr1,
-    //     .selector = {
-    //         .rpl_privilege_level = 0,
-    //         .table_indicator = 0,
-    //         .segment = 1,
-    //     },
-    //     .type_attr = {
-    //         .info = {
-    //             .gatetype = IDT_GATETYPE_TRAP_32,
-    //             .present = 1,
-    //             .privilege_level = 0,
-    //             .storage = 0,
-    //         },
-    //     }};
-
-    // for (size_t i = 0; i < 256; i++)
-    // {
-    //     idt_table[i] = idt_descriptor_encode(info);
-    // }
     idt_table[0] = idt_isr(&isr0);
     idt_table[1] = idt_isr(&isr1);
     idt_table[2] = idt_isr(&isr2);
@@ -177,6 +157,8 @@ void irq0_handler() {
     }
 }
 
+void (*irq_handlers[16])(void) = {irq0_handler};
+
 void __attribute__((__cdecl)) isr_handler(registers_t regs)
 {
     if (regs.int_no < 32) {
@@ -184,11 +166,12 @@ void __attribute__((__cdecl)) isr_handler(registers_t regs)
         _panic();
     } else if (regs.int_no >= 32 && regs.int_no <= 40) {
         uint32_t pic_irq = regs.int_no - 32;
-        if (pic_irq == 0) {
-            irq0_handler();
+        if (irq_handlers[pic_irq] != 0) {
+            irq_handlers[pic_irq]();
         } else {
             printf("Interrupt %i (PIC IRQ %i). Error code %x\n", regs.int_no, pic_irq, regs.err_code);
-        }
+        };
+
         PIC_sendEOI(pic_irq);
     }  
 }
