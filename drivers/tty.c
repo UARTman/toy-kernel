@@ -114,3 +114,13 @@ void terminal_writestring(const char* data)
 {
     terminal_write(data, strlen(data));
 }
+
+void terminal_setpos(int col, int row) {
+    terminal_column = col;
+    terminal_row = row;
+}
+
+void terminal_getpos(int *col, int *row) {
+    *col = terminal_column;
+    *row = terminal_row;
+}
