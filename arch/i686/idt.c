@@ -1,5 +1,8 @@
 #include "idt.h"
 #include "third_party/printf/printf.h"
+#include "pic.h"
+#include "drivers/tty.h"
+
 idt_descriptor_t idt_descriptor_encode(idt_descriptor_info_t info)
 {
     idt_descriptor_t descriptor;
@@ -158,6 +161,22 @@ void _panic() {
     }
 }
 
+int seconds_elapsed = 0;
+int tick_counter = 0;
+
+void irq0_handler() {
+    tick_counter += 1;
+    if (tick_counter > 18) {
+        tick_counter = 0;
+        seconds_elapsed += 1;
+        int c, r;
+        terminal_getpos(&c, &r);
+        terminal_setpos(0, 0);
+        printf("Total seconds passed: %i\n", seconds_elapsed);
+        terminal_setpos(c, r);
+    }
+}
+
 void __attribute__((__cdecl)) isr_handler(registers_t regs)
 {
     if (regs.int_no < 32) {
@@ -165,8 +184,11 @@ void __attribute__((__cdecl)) isr_handler(registers_t regs)
         _panic();
     } else if (regs.int_no >= 32 && regs.int_no <= 40) {
         uint32_t pic_irq = regs.int_no - 32;
-        printf("Interrupt %i (PIC IRQ %i). Error code %x\n", regs.int_no, pic_irq, regs.err_code);
-    }
-    
-    
+        if (pic_irq == 0) {
+            irq0_handler();
+        } else {
+            printf("Interrupt %i (PIC IRQ %i). Error code %x\n", regs.int_no, pic_irq, regs.err_code);
+        }
+        PIC_sendEOI(pic_irq);
+    }  
 }

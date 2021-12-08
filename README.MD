@@ -13,10 +13,10 @@
    - [x] Init the PIC
    - [ ] Finish the driver
   - [ ] Add the runtime-defined handlers
-- [ ] Timer
-  - [ ] Set up the PIT
-  - [ ] Write the IRQ0 handler
-  - [ ] Display the seconds since boot
+- [x] Timer
+  - [x] Set up the PIT
+  - [x] Write the IRQ0 handler
+  - [x] Display the seconds since boot
 - [ ] PS/2 Keyboard
   - [ ] Init the keyboard
   - [ ] Set up the IRQ
