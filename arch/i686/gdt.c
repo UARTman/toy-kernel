@@ -39,12 +39,12 @@ struct gdt_segment_descriptor gdt_segment_encode(struct gdt_segment_info info)
 
 struct gdt_descriptor rgdt;
 
-struct gdt_segment_descriptor gdt_table[4] = {};
+struct gdt_segment_descriptor gdt_table[6] = {};
 
 // TODO: Write my own GDT initializer
 void gdt_init()
 {
-    rgdt.size = 31;
+    rgdt.size = 39;
     uint32_t offset = (uint32_t)&gdt_table;
     rgdt.offset = offset;
     struct gdt_segment_info info0 = {
@@ -58,11 +58,36 @@ void gdt_init()
         .base = 0,
         .limit = 0xfffff,
         .access_byte = 0x9a,
-        .flags = 0,
+        .flags = 0xc,
     };
     gdt_table[1] = gdt_segment_encode(info1);
+    struct gdt_segment_info info2 = {
+        .base = 0,
+        .limit = 0xfffff,
+        .access_byte = 0x93,
+        .flags = 0xc,
+    };
+    gdt_table[2] = gdt_segment_encode(info2);
+
+    struct gdt_segment_info info3 = {
+        .base = 0,
+        .limit = 0xffff,
+        .access_byte = 0x9e,
+        .flags = 0x0,
+    };
+    gdt_table[3] = gdt_segment_encode(info3);
+    
+    struct gdt_segment_info info4 = {
+        .base = 0,
+        .limit = 0xffff,
+        .access_byte = 0x92,
+        .flags = 0x0,
+    };
+    gdt_table[4] = gdt_segment_encode(info4);
+    
 
     asm("lgdt %0" :"=m"(rgdt) : :);
+    asm("jmp $0x08, $reload_CS; reload_CS: mov $0x10, %ax; mov %ax, %ss; mov %ax, %ds; mov %ax, %es; mov %ax, %fs; mov %ax, %gs");
 }
 
 void gdt_prettyprint()

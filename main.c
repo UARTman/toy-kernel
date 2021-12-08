@@ -27,21 +27,17 @@ __attribute__((unused)) void kernel_main()
     {
         printf("A20 line found!\n");
     }
-    // gdt_init();
+    gdt_init();
     gdt_prettyprint();
     idt_header_t header;
     // uint8_t bytes [8];
 
-    idt_init();
+
+    PIC_remap(32, 40);
 
     pit_init();
-    PIC_remap(32, 40);
-    // int div = inw(0x40);
-    // printf("Divider is %i\n", div);
-    
-    // outw(0x40, 65535);
-    // div = inw(0x40)/;
-    // printf("Divider is %i\n", div);
+    idt_init();
+
 
     while (1) {
 
