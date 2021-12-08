@@ -22,6 +22,9 @@
   - [ ] Set up the IRQ
   - [ ] Write a command queue
   - [ ] Write an input buffer
+- [ ] Shell
+  - [ ] Display input to screen
+  - [ ] React to commands 
 - [ ] PCI
 - [ ] USB
 
