@@ -12,7 +12,7 @@
   - [ ] Set up the PIC
    - [x] Init the PIC
    - [ ] Finish the driver
-  - [ ] Add the runtime-defined handlers
+  - [x] Add the runtime-defined handlers
 - [x] Timer
   - [x] Set up the PIT
   - [x] Write the IRQ0 handler
