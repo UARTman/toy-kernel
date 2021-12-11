@@ -7,9 +7,11 @@
 int seconds_elapsed = 0;
 int tick_counter = 0;
 
-void irq0_handler() {
+void irq0_handler()
+{
     tick_counter += 1;
-    if (tick_counter > 18) {
+    if (tick_counter > 18)
+    {
         tick_counter = 0;
         seconds_elapsed += 1;
         int c, r;
@@ -20,11 +22,13 @@ void irq0_handler() {
     }
 }
 
-void timer_service_init() {
+void timer_service_init()
+{
     pit_init();
     irq_set_handler(0, irq0_handler);
 }
 
-int timer_service_seconds_elapsed() {
+int timer_service_seconds_elapsed()
+{
     return seconds_elapsed;
 }

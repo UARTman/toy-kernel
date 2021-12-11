@@ -76,7 +76,7 @@ void gdt_init()
         .flags = 0x0,
     };
     gdt_table[3] = gdt_segment_encode(info3);
-    
+
     struct gdt_segment_info info4 = {
         .base = 0,
         .limit = 0xffff,
@@ -84,9 +84,11 @@ void gdt_init()
         .flags = 0x0,
     };
     gdt_table[4] = gdt_segment_encode(info4);
-    
 
-    asm("lgdt %0" :"=m"(rgdt) : :);
+    asm("lgdt %0"
+        : "=m"(rgdt)
+        :
+        :);
     asm("jmp $0x08, $reload_CS; reload_CS: mov $0x10, %ax; mov %ax, %ss; mov %ax, %ds; mov %ax, %es; mov %ax, %fs; mov %ax, %gs");
 }
 

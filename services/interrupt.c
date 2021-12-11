@@ -5,22 +5,28 @@
 
 void (*irq_handlers[16])(void) = {};
 
-int irq_set_handler(int irq, void (*handler)(void)) {
-    if (irq < 0 || irq > 15) {
+int irq_set_handler(int irq, void (*handler)(void))
+{
+    if (irq < 0 || irq > 15)
+    {
         return -1;
     }
-    if (irq_handlers[irq]) {
+    if (irq_handlers[irq])
+    {
         return -2;
     }
     irq_handlers[irq] = handler;
     return 0;
 }
 
-int irq_unset_handler(int irq) {
-    if (irq < 0 || irq > 15) {
+int irq_unset_handler(int irq)
+{
+    if (irq < 0 || irq > 15)
+    {
         return -1;
     }
-    if (!irq_handlers[irq]) {
+    if (!irq_handlers[irq])
+    {
         return -2;
     }
     irq_handlers[irq] = 0;
@@ -48,5 +54,4 @@ void irq_service_init()
     {
         isr_set_handler(i, irq_handler);
     }
-    
 }

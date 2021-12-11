@@ -20,7 +20,6 @@
 
 int x = 10;
 
-
 __attribute__((unused)) void kernel_main()
 {
     terminal_initialize();
@@ -37,11 +36,10 @@ __attribute__((unused)) void kernel_main()
     irq_service_init();
     timer_service_init();
     // pit_init();
-    
+
     idt_init();
 
-
-    while (1) {
-
+    while (1)
+    {
     }
 }

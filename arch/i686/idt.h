@@ -7,23 +7,25 @@
 #define IDT_GATETYPE_INT_32 0xE
 #define IDT_GATETYPE_TRAP_32 0xF
 
-typedef struct __attribute__((__packed__)) {
+typedef struct __attribute__((__packed__))
+{
     uint16_t limit;
     uint32_t base;
 } idt_header_t;
 
-typedef union 
+typedef union
 {
     uint8_t byte;
-    struct {
+    struct
+    {
         unsigned int gatetype : 4;
         unsigned int storage : 1;
         unsigned int privilege_level : 2;
-        unsigned int present: 1;
+        unsigned int present : 1;
     } info;
 } idt_type_attribute_t;
 
-typedef struct 
+typedef struct
 {
     unsigned int offset_0_15 : 16;
     unsigned int selector : 16;
@@ -32,10 +34,11 @@ typedef struct
     unsigned int offset_16_31 : 16;
 } idt_descriptor_t;
 
-typedef struct {
-    unsigned int rpl_privilege_level: 2;
-    unsigned int table_indicator:1;
-    unsigned int segment:13;
+typedef struct
+{
+    unsigned int rpl_privilege_level : 2;
+    unsigned int table_indicator : 1;
+    unsigned int segment : 13;
 } idt_selector_t;
 
 typedef struct
@@ -45,7 +48,8 @@ typedef struct
     idt_type_attribute_t type_attr;
 } idt_descriptor_info_t;
 
-typedef struct __attribute__((__packed__)) registers {
+typedef struct __attribute__((__packed__)) registers
+{
     uint32_t ds;
     // Pushed by pusha.
     uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax;

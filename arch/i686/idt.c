@@ -28,8 +28,6 @@ idt_descriptor_info_t idt_descriptor_decode(idt_descriptor_t descriptor)
 idt_header_t idtr;
 idt_descriptor_t idt_table[256];
 
-
-
 /* BLACK MAGIC – strongly discouraged! */
 void interrupt_handler()
 {
@@ -45,7 +43,8 @@ void interrupt_handler()
     __asm__("popal; leave; iret"); /* BLACK MAGIC! */
 }
 
-idt_descriptor_t idt_isr(void(*ptr)) {
+idt_descriptor_t idt_isr(void(*ptr))
+{
     idt_descriptor_info_t info = {
         .offset = (uint32_t)ptr,
         .selector = {
@@ -64,17 +63,16 @@ idt_descriptor_t idt_isr(void(*ptr)) {
     return idt_descriptor_encode(info);
 }
 
-
-extern void isr0 ();
-extern void isr1 ();
-extern void isr2 ();
-extern void isr3 ();
-extern void isr4 ();
-extern void isr5 ();
-extern void isr6 ();
-extern void isr7 ();
-extern void isr8 ();
-extern void isr9 ();
+extern void isr0();
+extern void isr1();
+extern void isr2();
+extern void isr3();
+extern void isr4();
+extern void isr5();
+extern void isr6();
+extern void isr7();
+extern void isr8();
+extern void isr9();
 extern void isr10();
 extern void isr11();
 extern void isr12();
@@ -584,7 +582,6 @@ void idt_init()
     idt_table[254] = idt_isr(&isr254);
     idt_table[255] = idt_isr(&isr255);
 
-
     __asm__ volatile("lidt %0"
                      :
                      : "m"(idtr)
@@ -592,20 +589,21 @@ void idt_init()
     __asm__ volatile("sti");
 }
 
-void _panic() {
+void _panic()
+{
     printf("Kernel panic!\n");
-    while (1) {
+    while (1)
+    {
         asm("hlt");
     }
 }
-
-
 
 void (*isr_handlers[256])(registers_t) = {};
 
 void __attribute__((__cdecl)) isr_handler(registers_t regs)
 {
-    if (isr_handlers[regs.int_no]) {
+    if (isr_handlers[regs.int_no])
+    {
         isr_handlers[regs.int_no](regs);
         return;
     }
@@ -614,23 +612,28 @@ void __attribute__((__cdecl)) isr_handler(registers_t regs)
     _panic();
 }
 
-
-int isr_set_handler(int isr, void (*handler)(registers_t)) {
-    if (isr < 0 || isr > 255) {
+int isr_set_handler(int isr, void (*handler)(registers_t))
+{
+    if (isr < 0 || isr > 255)
+    {
         return -1;
     }
-    if (isr_handlers[isr]) {
+    if (isr_handlers[isr])
+    {
         return -2;
     }
     isr_handlers[isr] = handler;
     return 0;
 }
 
-int isr_unset_handler(int isr) {
-    if (isr < 0 || isr > 255) {
+int isr_unset_handler(int isr)
+{
+    if (isr < 0 || isr > 255)
+    {
         return -1;
     }
-    if (!isr_handlers[isr]) {
+    if (!isr_handlers[isr])
+    {
         return -2;
     }
     isr_handlers[isr] = 0;

@@ -6,7 +6,7 @@ struct __attribute__((__packed__)) gdt_descriptor
     unsigned int offset : 32;
 };
 
-struct __attribute__((__packed__)) gdt_segment_descriptor 
+struct __attribute__((__packed__)) gdt_segment_descriptor
 {
     unsigned int limit_0_15 : 16;
     unsigned int base_0_15 : 16;
@@ -14,7 +14,7 @@ struct __attribute__((__packed__)) gdt_segment_descriptor
     unsigned int access_byte : 8;
     unsigned int limit_16_19 : 4;
     unsigned int flags : 4;
-    unsigned int base_24_31: 8;
+    unsigned int base_24_31 : 8;
 };
 
 struct __attribute__((__packed__)) gdt_segment_info
