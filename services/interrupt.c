@@ -44,7 +44,7 @@ void irq_handler(registers_t regs)
 
 void irq_service_init()
 {
-    for (int i = 32; i < 40; i++)
+    for (int i = 32; i < 48; i++)
     {
         isr_set_handler(i, irq_handler);
     }
