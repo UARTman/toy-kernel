@@ -5,4 +5,4 @@ arch_i686 = files('boot.s',
             'pic.c', 'pic.h',
             'interrupt.s',
             'helpers.h')
-kernel_files += arch_i686
+architectures += arch_i686

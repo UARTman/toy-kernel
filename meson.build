@@ -2,7 +2,7 @@ project('my-os', 'c')
 
 kernel_files = []
 
-subdir('arch/i686')
+subdir('arch')
 subdir('drivers')
 subdir('third_party/printf')
 
