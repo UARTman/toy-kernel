@@ -1,11 +1,12 @@
 project('my-os', 'c')
 
-drivers = ['drivers/tty.c', 'drivers/tty.h', 'drivers/pit.c', 'drivers/pit.h']
-arch_i686 = ['arch/i686/boot.s', 'arch/i686/a20.s', 'arch/i686/a20.h', 
-            'arch/i686/gdt.c', 'arch/i686/gdt.h', 'arch/i686/idt.h', 'arch/i686/idt.c', 'arch/i686/interrupt.s', 'arch/i686/helpers.h', 'arch/i686/pic.c', 'arch/i686/pic.h']
-printf = ['third_party/printf/printf.c', 'third_party/printf/printf.h']
+kernel_files = []
 
-kernel = executable('kernel', 'main.c', arch_i686, drivers, printf, include_directories: include_directories('.'))
+subdir('arch/i686')
+subdir('drivers')
+subdir('third_party/printf')
+
+kernel = executable('kernel', 'main.c', kernel_files, include_directories: include_directories('.'))
 # Run the kernel in QEMU
 qemu_args = ['-D', '/tmp/qemu_log']
 run_target('qemu', command: ['qemu-system-i386', qemu_args, '-kernel', kernel], depends: [kernel])
