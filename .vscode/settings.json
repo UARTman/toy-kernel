@@ -5,7 +5,10 @@
         "stdint-gcc.h": "c",
         "stdbool.h": "c",
         "printf.h": "c",
-        "gdt.h": "c"
+        "gdt.h": "c",
+        "*.tcc": "cpp",
+        "*.tbl": "cpp",
+        "*.def": "cpp"
     },
     "mesonbuild.configureOnOpen": true
 }
