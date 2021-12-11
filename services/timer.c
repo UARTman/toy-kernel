@@ -24,3 +24,7 @@ void timer_service_init() {
     pit_init();
     irq_set_handler(0, irq0_handler);
 }
+
+int timer_service_seconds_elapsed() {
+    return seconds_elapsed;
+}
