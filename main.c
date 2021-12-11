@@ -29,9 +29,6 @@ __attribute__((unused)) void kernel_main()
     }
     gdt_init();
     gdt_prettyprint();
-    idt_header_t header;
-    // uint8_t bytes [8];
-
 
     PIC_remap(32, 40);
 
@@ -42,11 +39,4 @@ __attribute__((unused)) void kernel_main()
     while (1) {
 
     }
-    // __asm__ volatile ("sidt %0" : "=m"(header) ::);
-    // printf("Bytes: 0x%x", bytes);
-    // printf("IDT Limit: %d Offset: 0x%lx\n", header.limit, header.base);
-    // asm ("int $6");
-    // x = x / 0;
-    
-    // printf("After interrupt, x = %i\n", x);
 }
