@@ -5,6 +5,7 @@ kernel_files = []
 subdir('arch')
 subdir('drivers')
 subdir('third_party/printf')
+subdir('services')
 
 kernel = executable('kernel', 'main.c', kernel_files, include_directories: include_directories('.'))
 # Run the kernel in QEMU

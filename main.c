@@ -7,6 +7,8 @@
 #include "arch/i686/helpers.h"
 #include "drivers/pit.h"
 #include "stdint.h"
+#include "services/interrupt.h"
+#include "services/timer.h"
 
 #if defined(__linux__)
 #warning "You should be building the codebase for bare metal, not linux!"
@@ -32,7 +34,10 @@ __attribute__((unused)) void kernel_main()
 
     PIC_remap(32, 40);
 
-    pit_init();
+    irq_service_init();
+    timer_service_init();
+    // pit_init();
+    
     idt_init();
 
 
