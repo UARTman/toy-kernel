@@ -1,0 +1,58 @@
+#pragma once
+#include <stdint.h>
+#include "interrupt_frame.h"
+
+#define ISR_ERR_H(N) __attribute__ ((interrupt))\
+    void isr_##N##_handler(struct interrupt_frame *frame, unsigned int error_code);
+#define ISR_NOERR_H(N) __attribute__ ((interrupt))\
+    void isr_##N##_handler(struct interrupt_frame *frame);
+
+
+ISR_NOERR_H(0)
+ISR_NOERR_H(1)
+ISR_NOERR_H(2)
+ISR_NOERR_H(3)
+ISR_NOERR_H(4)
+ISR_NOERR_H(5)
+ISR_NOERR_H(6)
+ISR_NOERR_H(7)
+ISR_ERR_H(8)
+ISR_NOERR_H(9)
+ISR_ERR_H(10)
+ISR_ERR_H(11)
+ISR_ERR_H(12)
+ISR_ERR_H(13)
+ISR_ERR_H(14)
+ISR_NOERR_H(15)
+ISR_NOERR_H(16)
+ISR_NOERR_H(17)
+ISR_NOERR_H(18)
+ISR_NOERR_H(19)
+ISR_NOERR_H(20)
+ISR_NOERR_H(21)
+ISR_NOERR_H(22)
+ISR_NOERR_H(23)
+ISR_NOERR_H(24)
+ISR_NOERR_H(25)
+ISR_NOERR_H(26)
+ISR_NOERR_H(27)
+ISR_NOERR_H(28)
+ISR_NOERR_H(29)
+ISR_NOERR_H(30)
+ISR_NOERR_H(31)
+ISR_NOERR_H(32)
+ISR_NOERR_H(33)
+ISR_NOERR_H(34)
+ISR_NOERR_H(35)
+ISR_NOERR_H(36)
+ISR_NOERR_H(37)
+ISR_NOERR_H(38)
+ISR_NOERR_H(39)
+ISR_NOERR_H(40)
+ISR_NOERR_H(41)
+ISR_NOERR_H(42)
+ISR_NOERR_H(43)
+ISR_NOERR_H(44)
+ISR_NOERR_H(45)
+ISR_NOERR_H(46)
+ISR_NOERR_H(47)

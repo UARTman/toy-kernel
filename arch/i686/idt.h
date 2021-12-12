@@ -48,20 +48,8 @@ typedef struct
     idt_type_attribute_t type_attr;
 } idt_descriptor_info_t;
 
-typedef struct __attribute__((__packed__)) registers
-{
-    uint32_t ds;
-    // Pushed by pusha.
-    uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
-    uint32_t int_no, err_code;
-    // Pushed by the processor automatically.
-    uint32_t eip, cs, eflags, useresp, ss;
-} registers_t;
 
 idt_descriptor_t idt_descriptor_encode(idt_descriptor_info_t info);
 idt_descriptor_info_t idt_descriptor_decode(idt_descriptor_t descript);
 
 void idt_init();
-
-int isr_set_handler(int isr, void (*handler)(registers_t));
-int isr_unset_handler(int isr);

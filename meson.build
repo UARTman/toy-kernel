@@ -1,13 +1,14 @@
 project('my-os', 'c')
 
 kernel_files = []
+kernel_objs = []
 
 subdir('arch')
 subdir('drivers')
 subdir('third_party/printf')
 subdir('services')
 
-kernel = executable('kernel', 'main.c', kernel_files, include_directories: include_directories('.'))
+kernel = executable('kernel', 'main.c', kernel_files, include_directories: include_directories('.'), objects: kernel_objs)
 # Run the kernel in QEMU
 qemu_args = ['-D', '/tmp/qemu_log']
 run_target('qemu', command: ['qemu-system-i386', qemu_args, '-kernel', kernel], depends: [kernel])

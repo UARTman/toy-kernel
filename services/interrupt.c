@@ -1,5 +1,5 @@
 #include "interrupt.h"
-#include "arch/i686/idt.h"
+#include "arch/i686/interrupt_handlers.h"
 #include "arch/i686/pic.h"
 #include "third_party/printf/printf.h"
 
@@ -33,16 +33,16 @@ int irq_unset_handler(int irq)
     return 0;
 }
 
-void irq_handler(registers_t regs)
+void irq_handler(struct interrupt_frame *frame, unsigned int int_no, unsigned int err_code)
 {
-    uint32_t pic_irq = regs.int_no - 32;
+    uint32_t pic_irq = int_no - 32;
     if (irq_handlers[pic_irq] != 0)
     {
         irq_handlers[pic_irq]();
     }
     else
     {
-        printf("Interrupt %i (PIC IRQ %i). Error code %x\n", regs.int_no, pic_irq, regs.err_code);
+        printf("Interrupt %i (PIC IRQ %i). Error code %x\n", int_no, pic_irq, err_code);
     };
 
     PIC_sendEOI(pic_irq);
