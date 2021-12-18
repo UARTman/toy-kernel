@@ -1,6 +1,6 @@
 #include "log.h"
 #include "drivers/serial.h"
-#include "drivers/tty.h"
+#include "drivers/vga_fb.h"
 #include "third_party/printf/printf.h"
 
 #define LOG_BUF_SIZE 100

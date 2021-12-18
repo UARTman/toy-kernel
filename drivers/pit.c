@@ -1,6 +1,5 @@
 #include "pit.h"
 #include "arch/i686/idt.h"
-#include "drivers/tty.h"
 #include "arch/i686/helpers.h"
 
 void pit_init()

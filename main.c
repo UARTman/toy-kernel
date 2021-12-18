@@ -3,7 +3,7 @@
 #include "arch/i686/gdt.h"
 #include "arch/i686/idt.h"
 #include "arch/i686/pic.h"
-#include "drivers/tty.h"
+#include "drivers/vga_fb.h"
 #include "drivers/serial.h"
 #include "services/interrupt.h"
 #include "services/timer.h"

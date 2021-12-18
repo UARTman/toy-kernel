@@ -2,7 +2,7 @@
 #include "services/interrupt.h"
 #include "drivers/pit.h"
 #include "third_party/printf/printf.h"
-#include "drivers/tty.h"
+#include "drivers/vga_fb.h"
 
 int seconds_elapsed = 0;
 int tick_counter = 0;

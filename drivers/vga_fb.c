@@ -4,7 +4,7 @@
  * Feature-complete
  */
 
-#include "tty.h"
+#include "vga_fb.h"
 
 size_t terminal_row;
 size_t terminal_column;
