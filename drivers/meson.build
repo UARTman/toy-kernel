@@ -2,6 +2,8 @@ tty = files('tty.c', 'tty.h')
 
 pit = files('pit.c', 'pit.h')
 
-drivers = [tty, pit]
+serial = files('serial.c', 'serial.h')
+
+drivers = [tty, pit, serial]
 
 kernel_files += drivers
