@@ -26,7 +26,9 @@ __attribute__((unused)) void kernel_main()
     printf("\n");
 
     if (!serial_init()) {
-        logf("Serial initialized!\n");
+        logf("COM1 initialized!\n");
+    } else {
+        warning_logf("COM1 not found\n");
     }
 
     logf("Hello, World!\n");
@@ -43,6 +45,9 @@ __attribute__((unused)) void kernel_main()
     timer_service_init();
 
     idt_init();
+
+    warning_logf("Testing warning...\n");
+    error_logf("Testing error...\n");
 
     while (1)
     {

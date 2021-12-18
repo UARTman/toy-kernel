@@ -10,7 +10,7 @@ subdir('services')
 
 kernel = executable('kernel', 'main.c', kernel_files, include_directories: include_directories('.'), objects: kernel_objs)
 # Run the kernel in QEMU
-qemu_args = ['-D', '/tmp/qemu_log']
+qemu_args = ['-D', '/tmp/qemu_log', '-serial', 'stdio']
 run_target('qemu', command: ['qemu-system-i386', qemu_args, '-kernel', kernel], depends: [kernel])
 run_target('qemu-dbg', command: ['qemu-system-i386', qemu_args, '-s', '-S', '-kernel', kernel])
 # Build an iso from the kernel
