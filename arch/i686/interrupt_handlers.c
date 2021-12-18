@@ -1,11 +1,11 @@
 #include "interrupt_handlers.h"
-#include "third_party/printf/printf.h"
+#include "services/log.h"
 
 void (*isr_handlers[256])(struct interrupt_frame *, unsigned int int_no, unsigned int err_code) = {};
 
 void _panic()
 {
-    printf("Kernel panic!\n");
+    logf("Kernel panic!\n");
     asm("cli");
     while (1)
     {
@@ -22,7 +22,7 @@ void isr_handler(struct interrupt_frame *frame, unsigned int int_no, unsigned in
         return;
     }
 
-    printf("Unhandled Interrupt %i. Error code %x\n", int_no, err_code);
+    logf("Unhandled Interrupt %i. Error code %x\n", int_no, err_code);
     _panic();
 }
 

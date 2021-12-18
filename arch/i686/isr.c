@@ -1,7 +1,6 @@
 #include <stdint.h>
 #include "isr.h"
 #include "interrupt_handlers.h"
-#include "third_party/printf/printf.h"
 
 
 

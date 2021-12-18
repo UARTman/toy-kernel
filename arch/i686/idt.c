@@ -1,7 +1,7 @@
 #include "idt.h"
-#include "third_party/printf/printf.h"
 #include "pic.h"
 #include "isr.h"
+#include "services/log.h"
 // #include "generated.h"
 
 // extern void isr_32_handler();
@@ -31,21 +31,6 @@ idt_descriptor_info_t idt_descriptor_decode(idt_descriptor_t descriptor)
 
 idt_header_t idtr;
 idt_descriptor_t idt_table[256];
-
-/* BLACK MAGIC – strongly discouraged! */
-void interrupt_handler()
-{
-    __asm__("pushal");
-
-    printf("Interrupt!\n");
-    __asm__("cli");
-    while (1)
-    {
-        asm("hlt");
-    }
-    /* do something */
-    __asm__("popal; leave; iret"); /* BLACK MAGIC! */
-}
 
 idt_descriptor_t idt_isr(void(*ptr))
 {

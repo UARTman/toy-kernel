@@ -1,7 +1,7 @@
 #include "interrupt.h"
 #include "arch/i686/interrupt_handlers.h"
 #include "arch/i686/pic.h"
-#include "third_party/printf/printf.h"
+#include "services/log.h"
 
 void (*irq_handlers[16])(void) = {};
 
@@ -42,7 +42,7 @@ void irq_handler(struct interrupt_frame *frame, unsigned int int_no, unsigned in
     }
     else
     {
-        printf("Interrupt %i (PIC IRQ %i). Error code %x\n", int_no, pic_irq, err_code);
+        logf("Interrupt %i (PIC IRQ %i). Error code %x\n", int_no, pic_irq, err_code);
     };
 
     PIC_sendEOI(pic_irq);

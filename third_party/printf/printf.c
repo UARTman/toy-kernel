@@ -35,6 +35,7 @@
 
 #include "printf.h"
 #include "drivers/tty.h"
+#include "drivers/serial.h"
 
 uint64_t __udivmoddi4(uint64_t num, uint64_t den, uint64_t *rem_p)
 {

@@ -2,7 +2,6 @@
 #include "arch/i686/idt.h"
 #include "drivers/tty.h"
 #include "arch/i686/helpers.h"
-#include "third_party/printf/printf.h"
 
 void pit_init()
 {

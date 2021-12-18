@@ -1,6 +1,6 @@
 #include "gdt.h"
 #include "stdint.h"
-#include "third_party/printf/printf.h"
+#include "services/log.h"
 
 struct gdt_descriptor gdt_get()
 {
@@ -95,7 +95,7 @@ void gdt_init()
 void gdt_prettyprint()
 {
     struct gdt_descriptor gdt = gdt_get();
-    printf("GDT Size=%u, Offset=0x%x\n", gdt.size, gdt.offset);
+    logf("GDT Size=%u, Offset=0x%x\n", gdt.size, gdt.offset);
     uint64_t *gdtLocation = (uint64_t *)gdt.offset;
     for (int i = 0; i < ((gdt.size / 8) + 1); i++)
     {
@@ -103,7 +103,7 @@ void gdt_prettyprint()
         struct gdt_segment_descriptor d = *(struct gdt_segment_descriptor *)&gdtEntry;
         struct gdt_segment_info info = gdt_segment_decode(d);
 
-        printf("Entry%d = 0x%016llx\nBase=0x%08x Limit=0x%05x Flags=0x%x Access Byte=0x%02x\n",
+        logf("Entry%d = 0x%016llx\nBase=0x%08x Limit=0x%05x Flags=0x%x Access Byte=0x%02x\n",
                i, gdtEntry, info.base, info.limit, info.flags, info.access_byte);
     }
 }

@@ -4,8 +4,10 @@
 #include "arch/i686/idt.h"
 #include "arch/i686/pic.h"
 #include "drivers/tty.h"
+#include "drivers/serial.h"
 #include "services/interrupt.h"
 #include "services/timer.h"
+#include "services/log.h"
 
 #if defined(__linux__)
 #warning "You should be building the codebase for bare metal, not linux!"
@@ -20,10 +22,17 @@ int x = 10;
 __attribute__((unused)) void kernel_main()
 {
     terminal_initialize();
-    printf("Hello, World!\n");
+
+    printf("\n");
+
+    if (!serial_init()) {
+        logf("Serial initialized!\n");
+    }
+
+    logf("Hello, World!\n");
     if (check_a20())
     {
-        printf("A20 line found!\n");
+        logf("A20 line found!\n");
     }
     gdt_init();
     gdt_prettyprint();
