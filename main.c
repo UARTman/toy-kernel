@@ -1,12 +1,9 @@
-// #include "drivers/tty.h"
 #include "arch/i686/a20.h"
 #include "third_party/printf/printf.h"
 #include "arch/i686/gdt.h"
 #include "arch/i686/idt.h"
 #include "arch/i686/pic.h"
-#include "arch/i686/helpers.h"
-#include "drivers/pit.h"
-#include "stdint.h"
+#include "drivers/tty.h"
 #include "services/interrupt.h"
 #include "services/timer.h"
 

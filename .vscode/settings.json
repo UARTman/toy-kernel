@@ -8,7 +8,8 @@
         "gdt.h": "c",
         "*.tcc": "cpp",
         "*.tbl": "cpp",
-        "*.def": "cpp"
+        "*.def": "cpp",
+        "interrupt_handlers.h": "c"
     },
     "mesonbuild.configureOnOpen": true
 }
