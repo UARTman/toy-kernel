@@ -41,7 +41,6 @@ struct gdt_descriptor rgdt;
 
 struct gdt_segment_descriptor gdt_table[6] = {};
 
-// TODO: Write my own GDT initializer
 void gdt_init()
 {
     rgdt.size = 39;
