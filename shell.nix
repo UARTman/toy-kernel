@@ -12,6 +12,7 @@
       pkgs.qemu
       pkgs.grub2
       pkgs.xorriso
+      pkgs.gdb
       pkgsCross.buildPackages.gcc
     ];
     

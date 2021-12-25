@@ -1,33 +1,16 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ninja - Build and debug active file",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/builddir/kernel",
-            // "args": [],
-            // "stopAtEntry": true,
-            // "stopAtConnect": true,
-
-            "cwd": "${fileDirname}",
-            // "environment": [],
-            // "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            // "preLaunchTask": "Run in qemu with debug",
-            "miDebuggerPath": "/usr/bin/gdb",
-            "miDebuggerServerAddress": "localhost:1234",
-            "targetArchitecture": "x86"
+            "type": "gdb",
+            "request": "attach",
+            "name": "Attach to gdbserver",
+            "executable": "${workspaceFolder}/builddir/kernel",
+            "target": "localhost:1234",
+            "remote": true,
+            "cwd": "${workspaceRoot}",
+            "valuesFormatting": "parseText"
         }
-    ]
+    ],
+    "compounds": []
 }
