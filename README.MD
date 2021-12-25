@@ -48,9 +48,12 @@ Requires `qemu-system-x86_64`.
 Run `ninja qemu` in the build directory.
 
 ### Making an .iso file for flashing onto a flash drive/CDROM
-Requires `grub-mkrescue` and all its dependencies.
+Requires `grub-mkrescue` (a part of GRUB2) and all its dependencies (the major one seems to be `xorriso`).
 
 Run `ninja iso` in the build directory.
+
+### Nix Shell
+You can get a nix shell via `nix-shell`. On the first run it might have to compile a gcc cross-compiler for you, which will take time. On the bright side, you won't have to do it by hand, which you would otherwise pretty much have to do.
 
 ### What if I'm on Windows though?
 You can probably set up the minGW toolchain and QEMU. I believe in you.
