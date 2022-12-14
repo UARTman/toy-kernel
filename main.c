@@ -19,7 +19,7 @@
 
 int x = 10;
 
-__attribute__((unused)) void kernel_main()
+_Noreturn __attribute__((unused)) void kernel_main()
 {
     terminal_initialize();
 

@@ -34,11 +34,13 @@ void serial_write(char a) {
    outb(PORT,a);
 
    if (a == '\n') {
-       serial_write('\r');
+       while (is_transmit_empty() == 0);
+
+       outb(PORT,'\r');
    }
 }
 
-void serial_write_str(char *a) {
+void serial_write_str(const char *a) {
     while (*a) {
         serial_write(*a);
         a += 1;

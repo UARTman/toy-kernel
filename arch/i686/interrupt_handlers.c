@@ -3,7 +3,7 @@
 
 void (*isr_handlers[256])(struct interrupt_frame *, unsigned int int_no, unsigned int err_code) = {};
 
-void _panic()
+_Noreturn void panic_handler()
 {
     error_logf("Kernel panic!\n");
     asm("cli");
@@ -23,7 +23,7 @@ void isr_handler(struct interrupt_frame *frame, unsigned int int_no, unsigned in
     }
 
     error_logf("Unhandled Interrupt %i. Error code %x\n", int_no, err_code);
-    _panic();
+    panic_handler();
 }
 
 int isr_set_handler(int isr, void (*handler)(struct interrupt_frame *frame, unsigned int int_no, unsigned int err_code))
