@@ -2,5 +2,5 @@
 
 
 void logf(char *format, ...);
-void warning_logf(char *format, ...);
-void error_logf(char *format, ...);
+void logf_warn(char *format, ...);
+void logf_err(char *format, ...);

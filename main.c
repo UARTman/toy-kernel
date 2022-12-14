@@ -28,7 +28,7 @@ _Noreturn __attribute__((unused)) void kernel_main()
     if (!serial_init()) {
         logf("COM1 initialized!\n");
     } else {
-        warning_logf("COM1 not found\n");
+        logf_warn("COM1 not found\n");
     }
 
     logf("Hello, World!\n");
@@ -46,8 +46,8 @@ _Noreturn __attribute__((unused)) void kernel_main()
 
     idt_init();
 
-    warning_logf("Testing warning...\n");
-    error_logf("Testing error...\n");
+    logf_warn("Testing warning...\n");
+    logf_err("Testing error...\n");
 
     while (1)
     {

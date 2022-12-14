@@ -19,7 +19,7 @@ void logf(char *format, ...) {
     va_end(va);
 }
 
-void warning_logf(char *format, ...) {
+void logf_warn(char *format, ...) {
     va_list va;
     va_start(va, format);
     terminal_setcolor(VGA_COLOR_BROWN, VGA_COLOR_BLACK);
@@ -30,7 +30,7 @@ void warning_logf(char *format, ...) {
     va_end(va);
 }
 
-void error_logf(char *format, ...) {
+void logf_err(char *format, ...) {
     va_list va;
     va_start(va, format);
     terminal_setcolor(VGA_COLOR_RED, VGA_COLOR_BLACK);
