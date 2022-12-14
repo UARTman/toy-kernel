@@ -29,10 +29,17 @@
 - [ ] USB
 
 ## Build instructions
-Requires `meson` and `ninja` build tools and an `i686-elf` gcc cross-compilation
-toolchain located in `/usr/bin`.
 
-First, setup the builddir **in the root of this repository** like this:
+### Build requirements
+Requires `meson` and `ninja` build tools and an `i686-elf` gcc cross-compiler
+toolchain located in your `$PATH`.
+
+#### Building the cross-compiler
+If you aren't using `nix`, please refer to the [OSDev guide](https://wiki.osdev.org/GCC_Cross-Compiler)
+for instructions.
+
+### Building the kernel
+First, set up the build directory **in the root of this repository** like this:
 ```shell
 meson setup builddir --cross-file cross_build.ini
 ```
@@ -42,12 +49,13 @@ Then, you can build the kernel like this:
 cd builddir # go into the build directory
 meson compile # compile the kernel
 ```
+
 ### Running in an emulator
 Requires `qemu-system-x86_64`.
 
 Run `ninja qemu` in the build directory.
 
-### Making an .iso file for flashing onto a flash drive/CDROM
+### Making an .iso file for flashing onto a flash drive/CD-ROM
 Requires `grub-mkrescue` (a part of GRUB2) and all its dependencies (the major one seems to be `xorriso`).
 
 Run `ninja iso` in the build directory.
@@ -58,4 +66,4 @@ You can get a nix shell via `nix-shell`. On the first run it might have to compi
 ### What if I'm on Windows though?
 You can probably set up the minGW toolchain and QEMU. I believe in you.
 
-Also, you can use WSL, which is included by default in Win11, as far as I've heard.
+Also, you can use WSL2, which is included by default in Win11, as far as I've heard.
