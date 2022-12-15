@@ -18,6 +18,7 @@
   - [x] Write the IRQ0 handler
   - [x] Display the seconds since boot
 - [ ] PS/2 Keyboard
+  - [x] Init the PS/2 controller
   - [ ] Init the keyboard
   - [ ] Set up the IRQ
   - [ ] Write a command queue
