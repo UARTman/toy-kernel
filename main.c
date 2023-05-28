@@ -11,11 +11,11 @@
 #include "services/log.h"
 
 #if defined(__linux__)
-#warning "You should be building the codebase for bare metal, not linux!"
+#error "You should be building the codebase for bare metal, not linux!"
 #endif
 
 #if !defined(__i386__)
-#warning "This should be compiled with elf-i386 compiler"
+#error "This should be compiled with elf-i386 compiler"
 #endif
 
 _Noreturn __attribute__((unused)) void kernel_main()
