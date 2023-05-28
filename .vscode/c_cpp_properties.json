@@ -6,11 +6,10 @@
                 "${workspaceFolder}/**"
             ],
             "defines": [],
-         //   "compilerPath": "/nix/store/jy4zy875hvnds59x8il6fx6kxr8q6sgd-i686-elf-stage-final-gcc-debug-wrapper-10.3.0/bin/i686-elf-gcc",
             "cStandard": "gnu17",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "linux-gcc-x64",
-            "compileCommands": "${workspaceFolder}/builddir/compile_commands.json"
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
         },
         {
             "name": "i686-elf",
@@ -22,7 +21,7 @@
             "cStandard": "gnu17",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "linux-gcc-x86",
-            "compileCommands": "${workspaceFolder}/builddir/compile_commands.json",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
             "compilerArgs": [
                 "-std=gnu99",
                 "-ffreestanding",

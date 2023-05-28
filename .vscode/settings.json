@@ -9,7 +9,9 @@
         "*.tcc": "cpp",
         "*.tbl": "cpp",
         "*.def": "cpp",
-        "interrupt_handlers.h": "c"
+        "interrupt_handlers.h": "c",
+        "vga_fb.h": "c",
+        "i8042.h": "c"
     },
     "mesonbuild.configureOnOpen": true
 }

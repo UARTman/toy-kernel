@@ -1,0 +1,1 @@
+target_sources(kernel PUBLIC vga_fb.c vga_fb.h pit.c pit.h serial.c serial.h i8042.c i8042.h)
