@@ -1,3 +1,4 @@
 builddir
 build
 cmake-build-debug
+.cache
